@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.idea/
+chromedriver.exe
+.venv/
+venv/
+*.log
