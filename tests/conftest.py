@@ -12,6 +12,8 @@ def driver():
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
+    driver.implicitly_wait(5)
+    driver.get("https://www.demoblaze.com/")
     yield driver
     driver.quit()
 
@@ -34,13 +36,6 @@ def product_page(driver):
 @pytest.fixture
 def cart_page(driver):
     return CartPage(driver)
-
-@pytest.fixture
-def driver():
-    driver = webdriver.Chrome()
-    driver.get("https://www.demoblaze.com/")
-    yield driver
-    driver.quit()
 
 @pytest.fixture
 def contact_page(driver):
