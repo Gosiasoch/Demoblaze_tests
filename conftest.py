@@ -6,7 +6,7 @@ from pages.signup_page import SignUpPage
 @pytest.fixture
 def driver():
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")  # Możesz usunąć jeśli chcesz widzieć przeglądarkę
+    options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(5)
     yield driver
