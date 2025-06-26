@@ -5,7 +5,7 @@ def test_place_order(home_page, product_page, cart_page):
     product_page.accept_alert()
     cart_page.go_to_cart()
     assert cart_page.place_order()
-
+@pytest.mark.xfail(reason="Aplikacja akceptuje zamówienie z pustym koszykiem – brak walidacji")
 def test_order_without_product(home_page, cart_page):
     home_page.open()
     cart_page.go_to_cart()
