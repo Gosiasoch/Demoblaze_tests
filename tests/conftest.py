@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
 from pages.home_page import HomePage
-from pages.signup_page import SignupPage
+from pages.signup_page import SignUpPage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 from pages.cart_page import CartPage
@@ -21,7 +21,7 @@ def home_page(driver):
 
 @pytest.fixture
 def signup_page(driver):
-    return SignupPage(driver)
+    return SignUpPage(driver)
 
 @pytest.fixture
 def login_page(driver):
