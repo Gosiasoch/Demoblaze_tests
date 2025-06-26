@@ -6,31 +6,24 @@ from faker import Faker
 
 fake = Faker()
 
-
 user_data = [
-    (f"{fake.user_name()}{fake.random_int(1000,9999)}", fake.password(length=10))
+    (f"{fake.user_name()}{fake.random_int(1000, 9999)}", fake.password(length=10))
     for _ in range(4)
 ]
 
+
 @pytest.mark.parametrize("username, password", user_data)
 def test_register_and_login_user(home_page, signup_page, login_page, username, password):
-
     home_page.open()
     home_page.click_signup()
     signup_page.register(username, password)
     alert_text = signup_page.accept_alert()
 
-    if "Sign up successful." in alert_text:
+    WebDriverWait(home_page.driver, 5).until_not(
+        EC.visibility_of_element_located((By.ID, "signInModal"))
+    )
 
-        WebDriverWait(home_page.driver, 5).until_not(
-            EC.visibility_of_element_located((By.ID, "signInModal"))
-        )
+    home_page.click_login()
+    login_page.login(username, password)
 
-
-        home_page.click_login()
-        login_page.login(username, password)
-
-
-        assert home_page.is_logout_visible()
-    else:
-        pytest.skip(f"Użytkownik {username} już istnieje – pomijam logowanie.")
+    assert home_page.is_logout_visible()
