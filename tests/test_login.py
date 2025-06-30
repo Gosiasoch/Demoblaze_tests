@@ -12,11 +12,10 @@ def test_login_success(home_page, login_page):
 def test_login_wrong_username(home_page, login_page):
     home_page.open()
     home_page.click_login()
-    # losujemy username, żeby mieć pewność, że nie istnieje
     username = fake.user_name()
     password = fake.password(length=10)
     login_page.login(username, password)
-    # zamiast sprawdzać alert, upewniamy się, że nie ma przycisku „Log out”
+
     assert not home_page.is_logout_visible()
 
 def test_login_empty_fields(home_page, login_page):

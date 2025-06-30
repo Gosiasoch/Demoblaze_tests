@@ -1,5 +1,9 @@
 import pytest
+import sys
+import os
 from selenium import webdriver
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from pages.home_page import HomePage
 from pages.signup_page import SignUpPage
 from pages.login_page import LoginPage
